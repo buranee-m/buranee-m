@@ -27,6 +27,7 @@
 |What are the impact of genetic variant that classify in different stage of SNPEff?|SNPEff, SNPs, Genetic verients|
 |What is the mechanism of EKG in Brugada syndrom?| Brugada syndrom, EKG, Heart electrical conduction|
 |"SCN5A, NM_001099404.1 c.536G>A, p.Arg179Gln" what do we get from this sentence?|Understand genetic report data including Gene, Transcript, DNA level change, Amino change|
+|What is genetic heterogeneity?|Genetic heterogeneity|
 
 
 
