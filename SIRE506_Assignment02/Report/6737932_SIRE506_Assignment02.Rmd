@@ -1,0 +1,92 @@
+---
+title: "6737932_SIRE506_Assignment02"
+output:
+  word_document: default
+  html_document: default
+date: "2024-09-08"
+editor_options:
+  markdown:
+    wrap: 72
+---
+
+```{r}
+library(readr)
+train <- read_csv("Documents/SIRE/506/SIRE506_Assignment02/Dataset/train.csv")
+```
+
+Note: Package "readr" is installed to read CSV file by using read_csv()
+function.
+
+# Summary Statistic for Titanic by Survival Status
+
+A comprehensive overview of major characteristic of 891
+passengers during titanic diaster has been analyzed and categorized base
+on survival status. Figure 1 reveal that their are 342 survivors whereas there are 549 non-survivors, the
+number of female passengers show the significant survivals rate as 68% which is greater than male(32%).
+The reflection of passengers whose traveling none or at least one
+Siblings/Spouses aboard (SibSp) or Parents/Children aboard (Patch) had
+the higher potential of survival rates. Moreover, passenger in
+first-class got the highest survivals rate with 40% followed by 35% of
+thired-class and least survival at second-class which is 25% of
+passengers. The median of age has been calculated and indicates central
+value at 28 years old, however, the unknown ages can affects the
+analysis of age in the survival pattern. The fare paid of the survived
+passenger tended to higher than who not survived. The presence of these
+finding suggests that fare paid could be one of the factors that
+determined the survival of passengers which could related to the passengers class
+because the higher paid can indicate the greater service and location in the cabin, therefore, those factors can influence the chance of servive throughout this diaster.
+
+Note: Essential R packages that has been install are "gt", "dplyr", and
+"gtsummary".
+
+```{r}
+library(gt)
+library(dplyr)
+library(gtsummary)
+summary_table <- train%>% select(Survived, Pclass, Sex, Age, SibSp, Parch, Fare) %>% tbl_summary(by = Survived)
+summary_table_gt <- summary_table %>%
+  as_gt() %>%
+  tab_caption(caption = "Figure 1: Summary Statistic for Titanic by Survival Status") %>%
+  tab_options(table.width = pct(100))
+summary_table_gt <- summary_table_gt %>%
+  tab_footnote(
+    footnote = " Explanatory Notes:
+                 Survived: Passenger did not survive (0), Survived passenger (1). 
+                 Pclass: Passenger class (1, 2, or 3).
+                 Sex: Gender of the passenger. 
+                 Age: Age of the passenger.
+                 SibSp: Number of siblings and spouses aboard the Titanic.
+                 Parch: Number of children and parents aboard the Titanic.
+                 Fare: The price paid (in pounds) for the ticket.",
+    locations = cells_column_labels(columns = everything())
+  )
+summary_table_gt
+
+```
+
+
+## Identify outliers and the spread of continuoues variables
+
+In order to visuailzing the distribution of continuous variables and
+identifying outliers, the box plot of the age distribution of passengers
+(figure 2.1) and the fare paid of passengers (figure 2.2) are use to
+observed the correlation coefficient of demographic in titanic dataset.
+Additionally, the box plot analysis are use to support and clarify the
+data from figure 1.
+
+```{r}
+boxplot(Age ~ Survived, 
+        data = train, 
+        main = "Figure 2.1: Comparison of Age Distributions by Survival",
+        xlab = "Survival Status",
+        ylab = "Age",
+        names = c("Not Survived", "Survived"),
+        col = c("gray", "lightblue"))
+boxplot(Fare ~ Survived, 
+        data = train, 
+        main = "Figure 2.2: Comparison of Fare Distributions by Survival",
+        xlab = "Survival Status",
+        ylab = "Fare Amount",
+        names = c("Not Survived", "Survived"),
+        col = c("gray", "lightblue"))
+```
