@@ -1,1 +1,0 @@
-print("bioseq initialized",__name__)
