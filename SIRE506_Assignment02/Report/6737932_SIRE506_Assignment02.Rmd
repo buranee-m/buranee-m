@@ -11,7 +11,8 @@ editor_options:
 
 ```{r}
 library(readr)
-train <- read_csv("Documents/SIRE/506/SIRE506_Assignment02/Dataset/train.csv")
+train <- read_csv("../Dataset/train.csv")
+View(train)
 ```
 
 Note: Package "readr" is installed to read CSV file by using read_csv()
